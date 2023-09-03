@@ -13,7 +13,7 @@ interface Person {
 }
 
 // function clone (source: Person): Person {
-//     return Object.assign({}, source);
+//     return Object.apply({}, source);
 // }
 
 interface UserContact {
@@ -24,7 +24,7 @@ interface UserContact {
 }
 
 function clone<T1, T2 extends T1>(source: T1): T1 {
-    return Object.assign({}, source);
+    return Object.apply({}, source);
 }
 
 const contact1: Person = {id: 1, name: "tarek", status: 'Active' };

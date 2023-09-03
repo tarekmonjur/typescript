@@ -17,6 +17,10 @@
 - **Index access type**
 - **Limited types with record**
 
+<br />
+
+## Basic TypeScript Usages:
+
 ### Primitive and Build-in Types:
 
 ```
@@ -109,3 +113,50 @@ let contact: Contact = {
     status: contactStatus.Active
 };
 ```
+
+### Typing function
+
+```
+interface Contact {
+    id: number;
+    name: string;
+}
+
+function clone(data: Contact): Contact {
+    return Object.assign({}, data);
+}
+
+const user: Contact = { id: 13, name: "tarek" };
+const newUser = clone(user);
+```
+
+### Define meta type using generics
+
+```
+interface Contact {
+    id: number;
+    name: string;
+}
+
+interface UserContact {
+    id: number;
+    name: string;
+    username: string;
+}
+
+function clone<T1, T2 extends T1>(data: T1): T2 {
+    return Object.assign({}, data);
+}
+
+const user: Contact = { id: 13, name: "tarek" };
+const newUser = clone<Contact, UserContact>(user);
+
+const dateRange = { start: new Date(), end: new Date() };
+const newUser = clone(user);
+```
+
+<br />
+
+## Complex Types:
+
+### Multiple type with Union type
