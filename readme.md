@@ -100,16 +100,13 @@ Use enum type
 ```
 interface Contact {
     id: number;
-    name: contactName;
-    email: string;
-    birthDate?: Date; // its optional
+    name: string;
     status: contactStatus
 };
 
 let contact: Contact = {
     id: 1,
     name: "Tarek",
-    email: "tarekmonjur@gmail.com",
     status: contactStatus.Active
 };
 ```
@@ -131,6 +128,8 @@ const newUser = clone(user);
 ```
 
 ### Define meta type using generics
+
+Generics Typing
 
 ```
 interface Contact {
@@ -160,3 +159,62 @@ const newUser = clone(user);
 ## Complex Types:
 
 ### Multiple type with Union type
+
+```
+type birthDate = Date | number | string;
+type contactStatus = 'active' | 'inactive';
+
+interface Contact {
+    id: number;
+    name: string;
+    birthDate: birthDate;
+    status: contactStatus
+};
+```
+
+### Keyof operator
+
+Dynamic Typing
+
+```
+interface Contact {
+    id: number;
+    name: string;
+    email: string;
+};
+
+type contactFields = keyof Contact;
+
+let basicContact: Contact = {
+    id: 1,
+    name: "Tarek",
+    email: "tarekmonjur@gmail.com",
+};
+
+function getValue<T, F extends keyof Contact>(source: T, field: F) {
+    return source[field];
+}
+
+getValue(basicContact, 'name');
+```
+
+### Typeof operator
+
+```
+const myType = { min: 4, max: 7 };
+function save(source: typeof myType) {}
+```
+
+### Index access type
+
+```
+interface Contact {
+    id: number;
+    name: string;
+    email: string;
+};
+
+interface contactEvent {
+    contactId: Contact['id']
+}
+```

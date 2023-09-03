@@ -32,3 +32,7 @@ const contact2 = clone<Person, UserContact>(contact1);
 
 const dateRange = { start: new Date(), end: new Date() };
 const dateRange2 = clone(dateRange);
+
+interface userEvent {
+    userId: UserContact['id']
+}
