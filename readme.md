@@ -22,6 +22,13 @@
 - **Extending and modifying existing types**
 - **Extracting metadata from existing types**
 
+## Adding dynamic behavior with decorator:
+
+- **Create Method Decorator**
+- **Create Factory Decorator**
+- **Create Class Decorator**
+- **Create Property Decorator**
+
 <br />
 
 ## Basic TypeScript Usages:
@@ -327,3 +334,11 @@ type userQueryMap = {
     [Tprop in keyof User]?: Query<User[Tprop]>
 }
 ```
+
+<br />
+
+## Adding dynamic behavior with decorator
+
+### Here is the all decrorators:
+
+[Decorator Examples](https://github.com/tarekmonjur/typescript/tree/master/src/decorator)

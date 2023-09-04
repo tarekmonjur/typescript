@@ -4,7 +4,11 @@
         "target": "ESNext",
         // "noEmit": true,
         "allowJs": true,
-        "checkJs": true
+        "checkJs": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": true,
     },
-    "include": ["src/**/*"]
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
 }
