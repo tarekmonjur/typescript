@@ -17,6 +17,11 @@
 - **Index access type**
 - **Limited types with record**
 
+## Metadata from existing types:
+
+- **Extending and modifying existing types**
+- **Extracting metadata from existing types**
+
 <br />
 
 ## Basic TypeScript Usages:
@@ -221,7 +226,9 @@ interface contactEvent {
 
 ### Limited types with record
 
-Defining dynamic but limited type with record
+#### Defining dynamic but limited type with record
+
+Basic Example
 
 ```
 const server: Record<string, string | number | Record<string, string> | Function> = {};
@@ -232,4 +239,91 @@ server.right = {}
 server.handle = () => console.log('live');
 ```
 
+Advance usecase example
+
+```
+type UserStatus = 'active' | 'inactive' | 'new';
+interface User {
+    id: number;
+    name: string;
+    status?: UserStatus
+}
+interface Query {
+    sort?: 'asc' | 'desc';
+    matches(val): boolean;
+}
+
+type userQuery = <Record<keyof User, Query>;
+
+function searchContacts(users: User[], query: userQuery) {
+    return users.filter(user => {
+        for (const property of Object.keys(user) as (keyof User)[]) {
+            const queryProperty = query[property];
+            if (queryProperty && queryProperty.matches(user[property])) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    });
+}
+
+const users: User[] = [];
+searchContacts(users, {
+    id: { matches: (id) => id === 123 },
+    name: { matches: (name) => name === 'tarek' },
+    status: { matches: (status) => status === 'tarek' }
+});
+```
+
 <br />
+
+## Metadata from existing types:
+
+### Extending and modifying existing types
+
+`Partial` && `Omit` utility type helper
+
+```
+type userQuery = Omit<
+    Partial<
+        Record<keyof User, Query>
+    >,
+    'status'
+    >;
+```
+
+`Partial` && `Pick` utility type helper
+
+```
+type userQuery =
+    Partial<
+        Pick<
+            Record<keyof User, Query>,
+            'id' | 'name'
+        >
+    >;
+```
+
+`Required` utility type
+
+```
+type userRequiredQuery = Required<userQuery>
+```
+
+### Extracting metadata from existing types
+
+`Mapped` type
+
+```
+interface Query <T>{
+    sort?: 'asc' | 'desc';
+    matches(val: T): boolean;
+}
+```
+
+```
+type userQueryMap = {
+    [Tprop in keyof User]?: Query<User[Tprop]>
+}
+```
