@@ -18,6 +18,13 @@
   font-family: var(--font-mono);
 }
 
+.pCode {
+  margin-top: 15px;
+  color: black;
+  background: white;
+  padding: 5px;
+}
+
 .description a {
   display: flex;
   justify-content: center;
