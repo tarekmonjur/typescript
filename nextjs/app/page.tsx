@@ -1,3 +1,4 @@
+/* react/no-unescaped-entities */
 import { Metadata } from 'next';
 import styles from './page.module.css';
 import Message from './common/message';
@@ -23,32 +24,32 @@ function BasicTypes() {
     <div style={{ padding: '15px' }}>
       <p className={styles.pCode}>
         <code className={styles.code}>
-        The value '{firstName}' is of '{typeof firstName}' type!
+        The value &apos;{firstName}&apos; is of &apos;{typeof firstName}&apos; type!
         </code>
       </p>
       <p className={styles.pCode}>
         <code className={styles.code}>
-          The value '{firstNumber}' is of '{typeof firstNumber}' type!
+          The value &apos;{firstNumber}&apos; is of &apos;{typeof firstNumber}&apos; type!
         </code>
       </p>
       <p className={styles.pCode}>
         <code className={styles.code}>
-          The value '{firstBoolean}' is of '{typeof firstBoolean}' type!
+          The value &apos;{firstBoolean}&apos; is of &apos;{typeof firstBoolean}&apos; type!
         </code>
       </p>
       <p className={styles.pCode}>
         <code className={styles.code}>
-          The value '{firstArray}' is of '{typeof firstArray}' type!
+          The value &apos;{firstArray}&apos; is of &apos;{typeof firstArray}&apos; type!
         </code>
       </p>
       <p className={styles.pCode}>
         <code className={styles.code}>
-          The value '{firstArray2}' is of '{typeof firstArray2}' type!
+          The value &apos;{firstArray2}&apos; is of &apos;{typeof firstArray2}&apos; type!
         </code>
       </p>
       <p className={styles.pCode}>
         <code className={styles.code}>
-          The value '{firstEnum}' is of '{typeof firstEnum}' type!
+          The value &apos;{firstEnum}&apos; is of &apos;{typeof firstEnum}&apos; type!
         </code>
       </p>
     </div>

@@ -12,17 +12,17 @@ export default function Nav () {
         </p>
         <div>
             <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+            href="#"
             target="_blank"
             rel="noopener noreferrer"
             >
             By{' '}
             <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
+                src="/fn-logo.png"
+                alt="FN Logo"
                 className={styles.vercelLogo}
                 width={100}
-                height={24}
+                height={100}
                 priority
             />
             </a>
