@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 import { HYDRATE } from "next-redux-wrapper";
 import { AppState } from './store';
 
@@ -10,7 +10,8 @@ export interface ICard {
 };
 
 type cardState = {
-    cards: ICard[]
+    cards: ICard[],
+    [key: string]: any,
 }
 
 const initialState: cardState = {
@@ -28,19 +29,25 @@ export const cardSlice = createSlice({
             ];
         },
         getCards: (state, action: PayloadAction<ICard[]>) => {
-            state.cards = action.payload;
+            state.cards = [...action.payload];
         }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                ...action.payload,
+                // ...action.payload,
+                ...action.payload?.cardSlice
             };
         }
     }
 });
 
 export const selectCards = (state: AppState) => state.cardSlice.cards;
+
+export const cardSelector = createSelector(selectCards, cards => {
+    return ([...cards] || []).sort((a,b) => b.id-a.id);
+});
+
 export const { addCard, getCards } = cardSlice.actions;
 export default cardSlice.reducer;
