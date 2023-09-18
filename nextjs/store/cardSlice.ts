@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { HYDRATE } from "next-redux-wrapper";
 import { AppState } from './store';
-import cardJsonData from './card.json';
 
-interface ICard {
+export interface ICard {
     id: number;
     name: string;
     amount: number;
@@ -15,7 +14,7 @@ type cardState = {
 }
 
 const initialState: cardState = {
-    cards: cardJsonData
+    cards: []
 };
 
 export const cardSlice = createSlice({
@@ -27,18 +26,21 @@ export const cardSlice = createSlice({
                 ...state.cards,
                 action.payload
             ];
+        },
+        getCards: (state, action: PayloadAction<ICard[]>) => {
+            state.cards = action.payload;
         }
     },
     extraReducers: {
         [HYDRATE]: (state, action) => {
             return {
                 ...state,
-                ...action,
+                ...action.payload,
             };
         }
     }
 });
 
 export const selectCards = (state: AppState) => state.cardSlice.cards;
-export const { addCard } = cardSlice.actions;
+export const { addCard, getCards } = cardSlice.actions;
 export default cardSlice.reducer;

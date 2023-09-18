@@ -4,7 +4,7 @@ import cardReducer, { cardSlice } from './cardSlice';
 
 const store = configureStore({
     reducer: {
-        [cardSlice.name]: cardReducer
+        [cardSlice.name]: cardReducer,
     },
     devTools: true,
 });
