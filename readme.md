@@ -342,3 +342,7 @@ type userQueryMap = {
 ### Here is the all decrorators:
 
 [Decorator Examples](https://github.com/tarekmonjur/typescript/tree/master/src/decorator)
+
+# React - NextJs: TypeScript
+
+[Project Examples](https://github.com/tarekmonjur/typescript/tree/master/nextjs)
